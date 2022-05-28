@@ -1,5 +1,5 @@
 import ProfileForm from './profile-form';
-import classes from './user-profile.module.css';
+import styles from './user-profile.module.css';
 
 function UserProfile() {
   // const [isLoading, setIsLoading] = useState(true);
@@ -33,8 +33,8 @@ function UserProfile() {
   }
 
   return (
-    <section className={classes.profile}>
-      <h1>Your User Profile</h1>
+    <section className={styles.profile}>
+      <h1>Profile</h1>
       <ProfileForm onChangePassword={changePasswordHandler} />
     </section>
   );

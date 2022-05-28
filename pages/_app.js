@@ -1,7 +1,10 @@
+import '../styles.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'next-auth/client';
+import { ToastContainer, toast } from 'react-toastify';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Layout from '../components/layout/layout';
-import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -9,6 +12,7 @@ function MyApp({ Component, pageProps }) {
       <Layout>
         <Component {...pageProps} />
       </Layout>
+      <ToastContainer theme="colored"/>
     </Provider>
   );
 }

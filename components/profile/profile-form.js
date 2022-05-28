@@ -1,8 +1,11 @@
 import { useRef } from 'react';
+import { Button, FloatingLabel, Form } from 'react-bootstrap';
+import { useSession } from 'next-auth/client';
 
-import classes from './profile-form.module.css';
+import styles from './profile-form.module.css';
 
 function ProfileForm(props) {
+  const [session, loading] = useSession();
   const oldPasswordRef = useRef();
   const newPasswordRef = useRef();
 
@@ -21,17 +24,33 @@ function ProfileForm(props) {
   }
 
   return (
-    <form className={classes.form} onSubmit={submitHandler}>
-      <div className={classes.control}>
-        <label htmlFor='new-password'>New Password</label>
-        <input type='password' id='new-password' ref={newPasswordRef} />
-      </div>
-      <div className={classes.control}>
-        <label htmlFor='old-password'>Old Password</label>
-        <input type='password' id='old-password' ref={oldPasswordRef} />
-      </div>
-      <div className={classes.action}>
-        <button>Change Password</button>
+    <form className={styles.form} onSubmit={submitHandler}>
+      <FloatingLabel
+        controlId="floatingInput"
+        label="Email address"
+        className="mb-3"
+      >
+      <Form.Control type="email" className="text-center" placeholder="name@example.com" value={session.user.email} readOnly/>
+      </FloatingLabel>
+
+      <FloatingLabel
+        controlId="floatingInput"
+        label="New Password"
+        className="mb-3"
+      >
+      <Form.Control type="password" className="text-center" placeholder="New Password" id='new-password' ref={newPasswordRef} />
+      </FloatingLabel>
+
+      <FloatingLabel
+        controlId="floatingInput"
+        label="Old Password"
+        className="mb-3"
+      >
+      <Form.Control type="password" className="text-center" placeholder="Old Password" id='old-password' ref={oldPasswordRef} />
+      </FloatingLabel>
+
+      <div className={styles.action}>
+        <Button>Change Password</Button>
       </div>
     </form>
   );
